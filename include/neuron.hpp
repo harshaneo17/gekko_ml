@@ -1,21 +1,18 @@
 #include <iostream>
 #include <math.h>
 
-class Neuron
+struct Connection
 {
-public:
-    int activate_relu();
-    
-
-
-    //Fast sigmoid function
-
-private:
-    //1.5
-    double val;
-
-    // 0-1
-    double activatedVal;
-
-    double derivedVal;
+    double weight;
+    double deltaWeight;
 };
+
+class Neuron{
+public:
+    // Neuron{};
+private:
+    double m_outputVal;
+    std::vector<Connection> m_outputWeights;
+}
+
+typedef std::vector<Neuron> Layer;

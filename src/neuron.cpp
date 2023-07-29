@@ -1,30 +1,19 @@
 #include <iostream>
 #include <vector>
-//#include <../include/neuron.hpp>
+#include <C:\Users\ASUS\Documents\cpp_projects\average_engine_ml\include\neuron.hpp>
 
-struct Connection
-{
-    double weight;
-    double deltaWeight;
-};
 
-class Neuron{};
 
-typedef std::vector<Neuron> Layer;
-
-class Neuron{
-public:
-    Neuron{};
-private:
-    double m_outputVal;
-}
 
 class Net{
 public:
     Net(const std::vector<unsigned> &topology){
         unsigned numLayers = topology.size();
         for (unsigned layerNum = 0; layerNum < numLayers; ++layerNum){
+            /* This takes number of layers as the length of the topology vector 
+            and creates a fills the vector m_layers with layers in a for loop */
             m_layers.push_back(Layer());
+            unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1];
 
             for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum){
                 m_layers.back().push_back(Neuron());
@@ -36,7 +25,7 @@ public:
     void getResults(std::vector<double> &targetVals) const{};
 
 private:
-    std::vector<Layer> m_layers;
+    std::vector<Layer> m_layers; //this is a vector within a vector m_layers[layerNum][neuronNum]
 };
 
 
