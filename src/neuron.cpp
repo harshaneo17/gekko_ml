@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <C:\Users\ASUS\Documents\cpp_projects\average_engine_ml\include\neuron.hpp>
+#include "include/neuron.hpp"
 
 
 
