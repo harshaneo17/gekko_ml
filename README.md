@@ -1,6 +1,6 @@
 # gekko engine_ml
 
-<img src="logo_gekko.png" width="800">
+<img src="logo_gekko.png" width="250">
 
 
 A framework to develop neural networks on CPP
