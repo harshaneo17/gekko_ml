@@ -1,0 +1,9 @@
+tensors
+loss functions
+layers
+neural nets
+optimizers
+data
+training
+end_to_end example: XOR
+end_to_end example: Fizz Buzz

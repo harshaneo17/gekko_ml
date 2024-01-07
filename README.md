@@ -15,3 +15,5 @@ This means g++ compile the program neuron.cpp as executable named neural_network
 Notes:
 
 https://www.youtube.com/watch?v=o64FV-ez6Gw&t=581s
+
+https://xtensor.readthedocs.io/en/latest/numpy.html
