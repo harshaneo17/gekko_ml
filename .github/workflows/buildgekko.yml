@@ -1,0 +1,25 @@
+name: GEKKO ML FRAMEWORK
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Change configure permissions
+      run: chmod +x ./configure
+    - name: configure
+      run: ./configure
+    - name: CMake
+      run: cmake -S . -B build/
+    - name: make
+      run: make -C build/
+    - name: clean
+      run: rm -rf build/

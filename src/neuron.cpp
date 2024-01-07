@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "include/neuron.hpp"
+#include "neuron.hpp"
 
 
 

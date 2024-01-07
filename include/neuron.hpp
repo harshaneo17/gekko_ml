@@ -1,3 +1,6 @@
+#ifndef NEURON_HPP
+#define NEURON_HPP
+
 #include <iostream>
 #include <math.h>
 
@@ -13,6 +16,8 @@ public:
 private:
     double m_outputVal;
     std::vector<Connection> m_outputWeights;
-}
+};
 
 typedef std::vector<Neuron> Layer;
+
+#endif 
