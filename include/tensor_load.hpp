@@ -9,7 +9,14 @@ class tensor_ops{
       void matrix_add(){
          return;
       }
+      
+      void matrix_subtract(){
+         return;
+      }
 
+      void matrix_multiply(){
+         return;
+      }
 
 };
 
