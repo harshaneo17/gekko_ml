@@ -1,6 +1,6 @@
-tensors
-loss functions
-layers
+tensors - done
+loss functions - done
+layers - in progress
 neural nets
 optimizers
 data
