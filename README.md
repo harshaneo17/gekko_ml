@@ -1,4 +1,4 @@
-# gekko engine_ml
+# Gekko engine_ml
 
 <img src="logo_gekko.png" width="250">
 
@@ -8,12 +8,13 @@ A framework to develop neural networks on CPP
 
 to compile this program use
 
-    g++ neuron.cpp -o neural_network
-
-This means g++ compile the program neuron.cpp as executable named neural_network
+    cmake -S . -B build
+    make -C build/
 
 Notes:
 
 https://www.youtube.com/watch?v=o64FV-ez6Gw&t=581s
 
 https://xtensor.readthedocs.io/en/latest/numpy.html
+
+deactivated github actions for a while

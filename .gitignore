@@ -2,3 +2,5 @@
 *.ppm
 
 build/
+
+rename_github/
