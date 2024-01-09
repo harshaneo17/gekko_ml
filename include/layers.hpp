@@ -2,6 +2,7 @@
 #define LAYERS_HPP
 
 #include "tensor_load.hpp"
+#include <map>
 
 class Layer {
     public:
@@ -19,9 +20,11 @@ class Layer {
 
 class Linear : public Layer {
     public:
-        params["w"] = xt::random::randn(input_size,output_size);
+        
         /*computes output = inputs @ weights + biases*/
         Linear {}; //describe the constructor outside
+
+        params["w"] = xt::random::randn(input_size,output_size);
 
 
 };
