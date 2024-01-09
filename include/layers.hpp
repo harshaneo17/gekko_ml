@@ -22,11 +22,21 @@ class Linear : public Layer {
     public:
         
         /*computes output = inputs @ weights + biases*/
-        Linear {}; //describe the constructor outside
+        Linear {input_s,output_s} : {input_size,output_size}; //describe the constructor outside
 
         params["w"] = xt::random::randn(input_size,output_size);
+        params["b"] = xt::random::randn(output_size);
 
+    xt::xtensor forward(xt::xtensor& inputs){
+        /*outputs = inputs @ w + b*/
+        auto sum = params["w"] + params["b"]
+        return xt::operator*(inputs,sum)
+    }
 
-};
+    private:
+        double input_size;
+        double output_size;
+
+};  
 
 #endif
