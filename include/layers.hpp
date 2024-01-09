@@ -6,6 +6,7 @@
 class Layer {
     public:
         Layer{};
+        std::map<std::string,xt::xtensor> params;
 
         virtual xt::xtensor forward(xt::xtensor& inputs){
             std::cout << "Not Implemented";
@@ -17,8 +18,10 @@ class Layer {
 };
 
 class Linear : public Layer {
-
-    /*computes output = inputs @ weights + biases*/
+    public:
+        params["w"] = xt::random::randn(input_size,output_size);
+        /*computes output = inputs @ weights + biases*/
+        Linear {}; //describe the constructor outside
 
 
 };
