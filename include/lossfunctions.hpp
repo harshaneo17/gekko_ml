@@ -14,23 +14,23 @@ We can use this to adjust parameters of our network depending on its performance
 class Lossfunctions {    
     public:
         Lossfunctions () : {}
-        virtual double loss(xt::xtensor& predicted, xt::xtensor& actual) {
+        virtual double loss(xt::xtensor<double>& predicted, xt::xtensor<double>& actual) {
             std::cout << "Error Not Implemented" ; 
         }
 
-        virtual xt::xtensor grad(xt::tensor& predicted, xt::xtensor& actual) {
+        virtual xt::xtensor<double> grad(xt::xtensor<double>& predicted, xt::xtensor<double>& actual) {
             std::cout << "Error Not Implemented";
         }
 };
 
 class MSE : public Lossfunctions {
     public:
-        Lossfunctions () : {}
-        double loss(xt::xtensor& predicted, xt::xtensor& actual) const override {
+        MSE () : {}
+        double loss(xt::xtensor<double>& predicted, xt::xtensor<double>& actual) const override {
             return xt::sum(pow((predicted - actual), 2)); 
         }
 
-        xt::xtensor grad(xt::tensor& predicted, xt::xtensor& actual) const override {
+        xt::xtensor<double> grad(xt::xtensor<double>& predicted, xt::xtensor<double>& actual) const override {
             return 2 * (predicted - actual);
         }
 
