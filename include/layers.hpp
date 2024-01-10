@@ -23,7 +23,7 @@ class Linear : public Layer {
     public:
         
         /*computes output = inputs @ weights + biases*/
-        Linear {input_s,output_s} : {input_size,output_size}; //describe the constructor outside
+        Linear (const input_s,const output_s) : (input_size,output_size) {} //describe the constructor outside
 
         params["w"] = xt::random::randn(input_size,output_size);
         params["b"] = xt::random::randn(output_size);
