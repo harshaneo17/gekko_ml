@@ -13,7 +13,7 @@ We can use this to adjust parameters of our network depending on its performance
 
 class Lossfunctions {    
     public:
-        Lossfunctions ();
+       
         virtual int loss(xt::xtensor<double,2>& predicted, xt::xtensor<double,2>& actual) {
             std::cout << "Error Not Implemented" ; 
         }
@@ -25,9 +25,10 @@ class Lossfunctions {
 
 class MSE : public Lossfunctions {
     public:
-        MSE ();
+        
         int loss(xt::xtensor<double,2>& predicted, xt::xtensor<double,2>& actual) override {
-            return xt::sum(pow((predicted - actual), 2)); 
+            return xt::sum(pow((predicted - actual), 2))[0];
+            //https://stackoverflow.com/questions/58338761/how-to-convert-xtsum-expression-result-to-an-integer
         }
 
         xt::xtensor<double,2> grad(xt::xtensor<double,2>& predicted, xt::xtensor<double,2>& actual) override {

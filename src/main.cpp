@@ -3,6 +3,7 @@
 #include <xtensor/xio.hpp>
 #include <xtensor/xview.hpp>
 #include <lossfunctions.hpp>
+#include <layers.hpp>
 
 int main(int argc, char* argv[])
 {
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
     xt::xarray<double> res = xt::view(arr1, 1) + arr2;
 
     MSE mse;
+    Linear linear;
     xt::xtensor<double, 2> a = {{3., 4.}, {5., 6.}};
     std::cout << a << std::endl;
 
@@ -24,8 +26,10 @@ int main(int argc, char* argv[])
     std::cout << b << std::endl;
     
     auto loss_test = mse.loss(a, b);
+    auto grad_test = linear.forward(a);
 
     std::cout << loss_test << std::endl;
+    std::cout << grad_test << std::endl;
 
     return 0;
 }

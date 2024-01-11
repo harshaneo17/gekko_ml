@@ -6,15 +6,15 @@
 
 class Layer {
     public:
-        Layer{};
-        std::map<std::string,xt::xtensor> params;
-        std::map<std::string,xt::xtensor> grads;
+        
+        std::map<std::string,xt::xtensor<double,2>> params;
+        std::map<std::string,xt::xtensor<double,2>> grads;
 
-        virtual xt::xtensor forward(xt::xtensor& inputs){
+        virtual xt::xtensor<double,2> forward(xt::xtensor<double,2>& inputs){
             std::cout << "Not Implemented";
         }
 
-        virtual xt::xtensor backward(xt::tensor& grad){
+        virtual xt::xtensor<double,2> backward(xt::tensor<double,2>& grad){
             std::cout << "Not Implemented";
         }
 };
@@ -27,16 +27,16 @@ class Linear : public Layer {
 
         params["w"] = xt::random::randn(input_size,output_size);
         params["b"] = xt::random::randn(output_size);
-        xt::xtensor inputs_class;
+        xt::xtensor<double,2> inputs_class;
 
-    xt::xtensor forward(xt::xtensor& inputs){
+    xt::xtensor<double,2> forward(xt::xtensor<double,2>& inputs) override {
         /*outputs = inputs @ w + b*/
         inputs_class = inputs;
         auto sum = params["w"] + params["b"];
         return xt::operator*(inputs,sum);
     }
 
-    xt::xtensor backward(xt::tensor& grad) {
+    xt::xtensor<double,2> backward(xt::xtensor<double,2>& grad) override {
         /**/
         grads["b"] = xt::sum(grad, axis=0);
         auto tr_inputs = xt::transpose(inputs_class);
