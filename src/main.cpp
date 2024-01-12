@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     xt::xarray<double> res = xt::view(arr1, 1) + arr2;
 
     MSE mse;
-    Linear linear;
+    Linear linear(4,4);
     xt::xtensor<double, 2> a = {{3., 4.}, {5., 6.}};
     std::cout << a << std::endl;
 
