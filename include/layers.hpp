@@ -24,10 +24,11 @@ class Linear : public Layer {
         
         /*computes output = inputs @ weights + biases*/
         Linear (double input_size,double output_size) : Layer() { //describe the constructor outside
-        params["w"] = xt::random::randn(input_size,output_size);
-        params["b"] = xt::random::randn(output_size);
+        params["w"] = xt::random::randn<double>(input_size,output_size),
+        params["b"] = xt::random::randn<double>(output_size);
         }
         xt::xtensor<double,2> inputs_class;
+
 
     xt::xtensor<double,2> forward(xt::xtensor<double,2>& inputs) override {
         /*outputs = inputs @ w + b*/
