@@ -6,6 +6,8 @@
 #include "tensor_load.hpp"
 #include <algorithm>
 
+
+
 class NeuralNet:
     public:
         std::vector<Layer> layers_class;
