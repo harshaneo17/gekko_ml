@@ -50,6 +50,8 @@ class Linear : public Layer {
 
 class Tanh : public Layer{
     public:
+        Tanh()
+
         Tensor tanh(Tensor& x){
             return xt::tanh(x);
         }
