@@ -12,12 +12,14 @@ class Train{
         void train(NeuralNet& net,Tensor& inputs,Tensor& targets,int& num_epochs,DataIterator& BatchIterator(),Loss& loss,Optimizer& optimizer){
             for (auto& epoch : num_epochs){
                 double epoch_loss = 0.0;
-                for (auto& batch : ) { //figure out an alternative for iterator
-                    auto predicted = net.forward(btach.inputs);
-                    auto epoch_loss += loss.loss(predicted, batch.targets);
-                    auto grad = loss.grad(predicted, batch.targets); 
-                    net.backward(grad);
-                    optimizer.step(net); 
+                for (auto& input : inputs ) {
+                    for(auto& target : targets){
+                    auto predicted = net.forward(input);
+                    auto epoch_loss += loss.loss(predicted, target);
+                    auto grad = loss.grad(predicted, target); 
+                    net.backward(grad); 
+                    optimizer.step(net);
+                    } //figure out an alternative for iterator 
                 }
                 std::cout << "epoch number " << epoch << "epoch loss is "   << epoch_loss;
             }
