@@ -18,3 +18,5 @@ https://www.youtube.com/watch?v=o64FV-ez6Gw&t=581s
 https://xtensor.readthedocs.io/en/latest/numpy.html
 
 deactivated github actions for a while
+
+add graphics update to show scroll bar
