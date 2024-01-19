@@ -20,3 +20,5 @@ https://xtensor.readthedocs.io/en/latest/numpy.html
 deactivated github actions for a while
 
 add graphics update to show scroll bar
+
+test build processes
