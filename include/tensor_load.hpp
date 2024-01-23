@@ -9,11 +9,15 @@
 #include <xtensor/xio.hpp>
 #include <xtensor/xmath.hpp>
 #include <cmath>
+#include <xtensor/xbuilder.hpp>
 
 typedef xt::xtensor<double,2> Tensor;
 
 
-
+template <typename... Types> //study a bit more on this
+struct NamedTuple {
+    std::tuple<Types...> values;
+};
 
 
 

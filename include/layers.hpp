@@ -63,3 +63,4 @@ class Tanh : public Layer{
 };
 
 #endif
+
