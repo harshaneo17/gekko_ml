@@ -1,9 +1,9 @@
 tensors - done
 loss functions - done
 layers - in progress
-neural nets
-optimizers
-data
-training
+neural nets - done
+optimizers - done
+data - done
+training - done
 end_to_end example: XOR
 end_to_end example: Fizz Buzz
