@@ -17,12 +17,11 @@ https://www.youtube.com/watch?v=o64FV-ez6Gw&t=581s
 
 https://xtensor.readthedocs.io/en/latest/numpy.html
 
+https://www.sharpsightlabs.com/blog/numpy-axes-explained/#numpy-axes-quick-explanation
+
 deactivated github actions for a while
 
 add graphics update to show scroll bar
 
 test build processes _
 
-break on 20th Jan 2024
-
-break on 21st and 22nd Jan 2024
