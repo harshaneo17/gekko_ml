@@ -76,5 +76,15 @@ class Sigmoid : public Layer{
         }
 };
 
+class Relu : public Layer{
+    public:
+        Relu()
+
+        Tensor Relu(Tensor& x){
+            Tensor rectified_tensor = xt::maximum(x,0);
+            return rectified_tensor;
+        }
+};
+
 #endif
 
