@@ -62,5 +62,19 @@ class Tanh : public Layer{
         }
 };
 
+class Sigmoid : public Layer{
+    public:
+        Sigmoid()
+
+        Tensor sigmoid(Tensor& x){
+            /*The irrational number e is also known as Euler’s number. 
+               It is approximately 2.718281, and is the base of the natural logarithm, ln (this means that, if , then . 
+               For real input, exp(x) is always positive.*/
+            // Calculate the exponential of all elements in the input array and add 1
+            auto denom_sigmoid = 1 + xt::exp(x); 
+            return 1 / denom_sigmoid;
+        }
+};
+
 #endif
 

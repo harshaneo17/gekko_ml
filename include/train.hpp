@@ -19,7 +19,7 @@ class Train{
                     auto grad = loss.grad(predicted, target); 
                     net.backward(grad); 
                     optimizer.step(net);
-                    } //figure out an alternative for iterator 
+                    }  
                 }
                 std::cout << "epoch number " << epoch << "epoch loss is "   << epoch_loss;
             }
