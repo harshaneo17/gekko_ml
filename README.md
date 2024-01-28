@@ -3,7 +3,9 @@
 <img src="logo_gekko.png" width="250">
 
 
-A framework to develop neural networks on CPP
+A framework to develop neural networks on CPP. 
+This is for educational purpose to understand how neural networks work from scratch. 
+his framework uses xtensor library.
 
 
 to compile this program use

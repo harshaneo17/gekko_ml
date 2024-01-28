@@ -1,8 +1,8 @@
 tensors - done
 loss functions - done
 layers - in progress
-neural nets - done
-optimizers - done
+neural nets - pending
+optimizers - pending
 data - done
 training - done
 end_to_end example: XOR
