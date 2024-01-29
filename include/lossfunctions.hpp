@@ -24,6 +24,7 @@ class Lossfunctions {
 };
 
 class MSE : public Lossfunctions {
+    /*Mean Square Error*/
     public:
         
         double loss(Tensor& predicted, Tensor& actual) override {
