@@ -6,9 +6,17 @@
 #include "optimizer.hpp"
 #include "lossfunctions.hpp"
 
-class Train{
-    public:
 
+
+
+class Train{
+
+    public:
+        void gui_train(){
+            /*this function uses screen width and multiple for loops to write screen*/
+        }
+
+        
         void train(NeuralNet& net,Tensor& inputs,Tensor& targets,int& num_epochs,DataIterator& BatchIterator(),MSE& loss,Optimizer& optimizer){
             for (auto& epoch : num_epochs){
                 double epoch_loss = 0.0;
