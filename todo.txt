@@ -1,5 +1,5 @@
-tensors - done
-loss functions - done
+tensors - done _ testing done
+loss functions - done _ testing done
 layers - in progress
 neural nets - pending
 optimizers - pending

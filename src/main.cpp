@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tensor_load.hpp"
 #include "lossfunctions.hpp"
-// #include "layers.hpp"
+#include "activations.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -16,19 +16,20 @@ int main(int argc, char* argv[])
     xt::xarray<double> res = xt::view(arr1, 1) + arr2;
 
     MSE mse;
+    Tanh testtanh;
     
     Tensor a = {{3., 4.}, {5., 6.}};
-    std::cout << a << std::endl;
 
     Tensor b = {{1., 2.}, {3., 4.}};
-    std::cout << b << std::endl;
     
     double loss_test = mse.loss(a, b);
     std::cout << loss_test << std::endl;
 
-    // Linear linear(4,4);
-    // auto grad_test = linear.forward(a);
-    // std::cout << grad_test << std::endl;
+    auto grad_test = mse.grad(a,b);
+    std::cout << grad_test << std::endl;
+
+    Tensor test_tanh = testtanh.tanh(a);
+    std::cout << test_tanh << std::endl;
 
     return 0;
 }

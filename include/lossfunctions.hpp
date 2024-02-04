@@ -10,7 +10,6 @@ We can use this to adjust parameters of our network depending on its performance
 #include "tensor_load.hpp"
 
 
-
 class Lossfunctions {    
     public:
        
@@ -43,9 +42,7 @@ class MAE : public Lossfunctions {
     public:
         
         double loss(Tensor& predicted, Tensor& actual) override {
-            double diff = xt::abs(predicted - actual);
-            double mean_diff = xt::mean(diff);
-            return mean_diff;
+            return xt::mean(xt::abs(predicted - actual))[0];
         }
         
 };
@@ -55,9 +52,7 @@ class MAS : public Lossfunctions {
     public:
 
         double loss(Tensor& predicted, Tensor& actual) override {
-            double equal_check = xt::equal(predicted, actual);
-            double mean = xt::mean(equal_check);
-            return mean;
+           return xt::mean(xt::equal(predicted, actual))[0];    
         }
 };
 

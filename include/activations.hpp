@@ -8,7 +8,7 @@
 
 class Tanh : public Layer{
     public:
-        Tanh()
+        Tanh();
 
         Tensor tanh(Tensor& x){
             return xt::tanh(x);
@@ -22,7 +22,7 @@ class Tanh : public Layer{
 
 class Sigmoid : public Layer{
     public:
-        Sigmoid()
+        Sigmoid();
 
         Tensor sigmoid(Tensor& x){
             /*The irrational number e is also known as Euler’s number. 
@@ -36,7 +36,7 @@ class Sigmoid : public Layer{
 
 class Relu : public Layer{
     public:
-        Relu()
+        Relu();
 
         Tensor Relu(Tensor& x){
             // maximum of x and 0 is relu
@@ -47,7 +47,7 @@ class Relu : public Layer{
 
 class Softmax : public Layer{
     public:
-        Softmax()
+        Softmax();
 
         Tensor softmax(Tensor& x){
             /*The softmax function takes as input a vector z of K real numbers, 
