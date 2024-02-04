@@ -17,6 +17,9 @@ int main(int argc, char* argv[])
 
     MSE mse;
     Tanh testtanh;
+    Sigmoid testsigmoid;
+    Relu testrelu;
+    Softmax testsoftmax;
     
     Tensor a = {{3., 4.}, {5., 6.}};
 
@@ -28,7 +31,7 @@ int main(int argc, char* argv[])
     auto grad_test = mse.grad(a,b);
     std::cout << grad_test << std::endl;
 
-    Tensor test_tanh = testtanh.tanh(a);
+    Tensor test_tanh = testsoftmax.softmax(a);
     std::cout << test_tanh << std::endl;
 
     return 0;
