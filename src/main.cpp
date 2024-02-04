@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tensor_load.hpp"
 #include "lossfunctions.hpp"
-#include "layers.hpp"
+// #include "layers.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     Tensor b = {{1., 2.}, {3., 4.}};
     std::cout << b << std::endl;
     
-    auto loss_test = mse.loss(a, b);
+    double loss_test = mse.loss(a, b);
     std::cout << loss_test << std::endl;
 
     // Linear linear(4,4);

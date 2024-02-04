@@ -38,7 +38,7 @@ class MSE : public Lossfunctions {
 
 };
 
-class MAE : public LossFunctions {
+class MAE : public Lossfunctions {
     /*Mean absolute error*/
     public:
         
@@ -55,11 +55,11 @@ class MAS : public Lossfunctions {
     public:
 
         double loss(Tensor& predicted, Tensor& actual) override {
-            auto equal_check = xt::equal(predicted, actual);
+            double equal_check = xt::equal(predicted, actual);
             double mean = xt::mean(equal_check);
             return mean;
         }
-}
+};
 
 
 
