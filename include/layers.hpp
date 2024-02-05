@@ -24,6 +24,8 @@ class Linear : public Layer {
         
         /*computes output = inputs @ weights + biases*/
         Linear (double input_size,double output_size) : Layer() { //describe the constructor outside
+        std::map<std::string,Tensor> params;
+        std::map<std::string,Tensor> grads;
         params["w"] = xt::random::randn<double>(input_size,output_size),
         params["b"] = xt::random::randn<double>(output_size);
         }
