@@ -20,11 +20,11 @@ int main(int argc, char* argv[])
 
     Linear linr(3,3);
     
-    Tensor output = linr.forward(a);
+    // Tensor output = linr.forward(a);
 
     std::cout << a << "|" << b << std::endl;
 
-    std::cout << output << std::endl;
+    //std::cout << output << std::endl;
 
     return 0;
 }
