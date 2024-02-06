@@ -27,3 +27,10 @@ add graphics update to show scroll bar
 
 test build processes _
 
+NOTES:
+
+libc++abi: terminating due to uncaught exception of type std::bad_alloc: std::bad_alloc
+zsh: abort      ./build/main
+
+https://stackoverflow.com/questions/50827678/what-is-the-most-common-reason-that-bad-alloc-is-thrown
+
