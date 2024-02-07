@@ -10,7 +10,6 @@ class Layer {
         std::map<std::string,Tensor> params;
         std::map<std::string,Tensor> grads;
         
-        virtual ~Layer(){}
         virtual Tensor forward(Tensor& inputs){
             std::cout << "Not Implemented";
         }
