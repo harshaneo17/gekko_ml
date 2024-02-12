@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
     Tensor b = {{1., 2.}, {3., 4.}};
 
     Linear linr(3,3);
+    linr.forward(a);
     
     // Tensor output = linr.forward(a);
 

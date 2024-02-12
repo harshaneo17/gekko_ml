@@ -11,7 +11,7 @@
 #include <cmath>
 #include <xtensor/xbuilder.hpp>
 
-typedef xt::xtensor<float,2> Tensor;
+typedef xt::xtensor<double,2> Tensor;
 
 
 template <typename... Types> //study a bit more on this

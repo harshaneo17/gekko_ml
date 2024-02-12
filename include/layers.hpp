@@ -8,7 +8,6 @@
 class Layer {
     public:
         
-        std::map<std::string,Tensor> params;
         std::map<std::string,Tensor> grads;
         
         virtual Tensor forward(Tensor& inputs){
@@ -22,31 +21,24 @@ class Layer {
 
 class Linear : public Layer {
     public:
-
-        Tensor inputs_class;
-        /*computes output = inputs @ weights + biases*/
-        Linear (double input_size,double output_size) : Layer() { //describe the constructor outside
-        // params["w"] = xt::random::randn<double>({input_size,output_size});
-        // params["b"] = xt::random::randn<double>({output_size});
-        auto print_v = xt::random::randn<double>({input_size,output_size});
-        auto print_g = xt::random::randn<double>({output_size});
-        std::cout << print_g << std::endl;
-        params["w"] = print_v;
         
-
-// …
-
-        // params["b"] = print_g;
-        // params["b"] = print_f;
+        /*computes output = inputs @ weights + biases*/
+        Linear (double input_size,double output_size) : Layer() {
+            double input_class_size = input_size;
+            double output_class_size = output_size;
+             //describe the constructor outside
+        Tensor print_v = xt::random::randn<double>({input_class_size,output_class_size});
+        Tensor print_g = xt::random::randn<double>({output_class_size});
+        Tensor inputs_class;
         }
         
         Tensor forward(Tensor& inputs) override {
             /*outputs = inputs @ w + b*/
-            // inputs_class = inputs;
-            // auto sum = params["w"] + params["b"];
-            // auto aids = inputs * sum;
-            // return aids;
-            return inputs;
+            inputs_class = inputs;
+            Tensor sum = print_v + print_g;
+            std::cout << "this is sum" << sum << std::endl;
+            Tensor aids = inputs * sum;
+            return aids;
         }
 
         // Tensor backward(Tensor& grad) override {
