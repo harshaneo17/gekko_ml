@@ -21,24 +21,28 @@ class Layer {
 
 class Linear : public Layer {
     public:
-        
         /*computes output = inputs @ weights + biases*/
-        Linear (double input_size,double output_size) : Layer() {
-            double input_class_size = input_size;
-            double output_class_size = output_size;
-             //describe the constructor outside
-        Tensor print_v = xt::random::randn<double>({input_class_size,output_class_size});
-        Tensor print_g = xt::random::randn<double>({output_class_size});
+        Linear (double input_size,double output_size) : input_class_size(input_size),output_class_size(output_size){}
         Tensor inputs_class;
+        Tensor weights;
+        Tensor bias;
+
+        void initialize(){
+            weights = xt::random::randn<double>({input_class_size,output_class_size});
+            auto bias = xt::random::randn<double>({output_class_size});
+            std::cout << weights << std::endl;
+            Tensor new_bias = static_cast<Tensor>(bias);
+            std::cout << new_bias << std::endl;
         }
         
         Tensor forward(Tensor& inputs) override {
             /*outputs = inputs @ w + b*/
+            initialize();
             inputs_class = inputs;
-            Tensor sum = print_v + print_g;
-            std::cout << "this is sum" << sum << std::endl;
-            Tensor aids = inputs * sum;
-            return aids;
+            // Tensor sum = weights + bias;
+            std::cout << inputs_class << std::endl;
+            // // Tensor aids = inputs * sum;
+            // return sum;
         }
 
         // Tensor backward(Tensor& grad) override {
@@ -49,6 +53,9 @@ class Linear : public Layer {
         //     auto tr_grad_w = xt::transpose(grads["w"]);
         //     return xt::operator*(grad,tr_grad_w);
         // }
+        private:
+            double input_class_size;
+            double output_class_size;
 
 };
 
