@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tensor_load.hpp"
 #include "layers.hpp"
+#include "neuralnetwork.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -14,19 +15,11 @@ int main(int argc, char* argv[])
 
     xt::xarray<double> res = xt::view(arr1, 1) + arr2;
     
-    Tensor a = {{3., 4.}, {5., 6.}};
-
-    Tensor b = {{1., 2.}, {3., 4.}};
-
     Linear linr(3,3);
     linr.forward(arr1);
     linr.backward(arr1);
-    
-    // Tensor output = linr.forward(a);
-
-    std::cout << a << "|" << b << std::endl;
-
-    //std::cout << output << std::endl;
+    std::vector<Linear> layers{linr,linr};
+    NeuralNet nn(layers);
 
     return 0;
 }
