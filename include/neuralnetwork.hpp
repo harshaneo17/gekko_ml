@@ -11,36 +11,33 @@
 class NeuralNet{
     public:
         std::vector<Linear> layers_class;
-        NeuralNet(std::vector<Linear>& layers):{
-        layers_class = layers;
-        }
+        NeuralNet(std::vector<Linear>& layers):layers_class(layers) {}
 
         Tensor forward(Tensor& inputs){
             for(auto& layer : layers_class)
                 inputs = layer.forward(inputs);
-                std::cout << "yes" << std::endl;
+            std::cout << inputs << std::endl;
             return inputs;
         }
 
         Tensor backward(Tensor& grad){
-            auto reversed = std::reverse(layers_class.begin(),layers_class.end());
-            for(auto& layer : reversed)
+            std::vector<Linear> rev_layers_class = layers_class; 
+            std::reverse(rev_layers_class.begin(),rev_layers_class.end());
+            for(auto& layer : rev_layers_class)
                 grad = layer.backward(grad);
             return grad;
         }
 
-        // std::vector<std::tuple<Tensor*, Tensor*>> params_and_grads(){
-        //     std::vector<std::tuple<Tensor*, Tensor*>> result;
-        //     for (const auto& layer : layers_class) {
-        //         for (size_t i = 0; i < layer.params.size(); ++i) {
-        //             Tensor* param = &layer.params[i];
-        //             Tensor* grad = &layer.grads[i];
-        //             result.push_back(std::make_tuple(param, grad));
-        //         }
-        //     }
-        //     std::cout << "return results" << result << std::endl;
-        //     return result;
-        //     }
+        std::tuple<Tensor, Tensor> params_and_grads() {
+            for (const auto& layer : layers_class) {
+                for (const auto& param_pair : layer.params) {
+                    const std::string& name = param_pair.first;
+                    const Tensor& param = param_pair.second;
+                    const Tensor& grad = layer.grads.at(name); // Use .at() to access by key
+                    return std::make_tuple(param, grad);
+                    }
+            }
+        }
 };
 
 
