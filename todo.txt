@@ -1,6 +1,6 @@
 tensors - done _ testing done
 loss functions - done _ testing done
-layers - in progress
+layers - done _ testing done
 activations - done _ testing done
 neural nets - pending
 optimizers - pending
