@@ -8,7 +8,7 @@
 
 
 
-class NeuralNet:
+class NeuralNet:{
     public:
         std::vector<Layer> layers_class;
         NeuralNet(std::vector<Layer>& layers):{
@@ -18,6 +18,7 @@ class NeuralNet:
         Tensor forward(Tensor& inputs){
             for(const auto& layer : layers_class)
                 inputs = layer->forward(inputs)
+                std::cout << "yes" << std::endl;
             return inputs;
         }
 
@@ -27,8 +28,8 @@ class NeuralNet:
                 grad = layer->backward(grad);
             return grad;
         }
-
-        
+};
+#endif       
 
 
 
