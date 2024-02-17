@@ -4,13 +4,13 @@
 
 int main(int argc, char* argv[])
 {
-    xt::xarray<double> arr1
+    Tensor arr1
       {{1.0, 2.0, 3.0},
        {2.0, 5.0, 7.0},
        {2.0, 5.0, 7.0}};
 
-    xt::xarray<double> arr2
-      {5.0, 6.0, 7.0};
+    Tensor arr2
+      {{5.0, 6.0, 7.0}};
 
     xt::xarray<double> res = xt::view(arr1, 1) + arr2;
     
@@ -19,7 +19,8 @@ int main(int argc, char* argv[])
     Tensor b = {{1., 2.}, {3., 4.}};
 
     Linear linr(3,3);
-    linr.forward(a);
+    linr.forward(arr1);
+    linr.backward(arr1);
     
     // Tensor output = linr.forward(a);
 
