@@ -28,15 +28,15 @@ class NeuralNet{
             return grad;
         }
 
-        std::tuple<Tensor, Tensor> params_and_grads() {
-            for (const auto& layer : layers_class) {
-                for (const auto& param_pair : layer.params) {
-                    const std::string& name = param_pair.first;
-                    const Tensor& param = param_pair.second;
-                    const Tensor& grad = layer.grads.at(name); // Use .at() to access by key
-                    return std::make_tuple(param, grad);
-                    }
+        std::vector<Tensor> params_and_grads() {
+            std::vector<Tensor> result;
+            for (auto& layer : layers_class) {
+                result.push_back(layer.params.weights);
+                result.push_back(layer.params.bias);
+                result.push_back(layer.params.grad_weights);
+                result.push_back(layer.params.grad_biases);
             }
+            return result;
         }
 };
 

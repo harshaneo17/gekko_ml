@@ -5,11 +5,17 @@
 #include <map>
 #include <typeinfo>
 
+struct Params{
+  Tensor weights;
+  Tensor bias;
+  Tensor grad_weights;
+  Tensor grad_biases;
+};
+
 class Layer {
     public:
         
-        std::map<std::string,Tensor> params;
-        std::map<std::string,Tensor> grads;
+        Params params;
         
         virtual Tensor forward(Tensor& inputs){
             std::cout << "Not Implemented";
@@ -27,8 +33,8 @@ class Linear : public Layer {
         Tensor inputs_class,weights,bias,grad_weights,grad_bias;
 
         void initialize(){
-            params["weights"] = xt::random::randn<double>({input_class_size,output_class_size});
-            params["bias"] = xt::random::randn<double>({output_class_size,output_class_size});
+            params.weights = xt::random::randn<double>({input_class_size,output_class_size});
+            params.bias = xt::random::randn<double>({output_class_size,output_class_size});
         }
         
         Tensor forward(Tensor& inputs) override {
@@ -42,8 +48,8 @@ class Linear : public Layer {
                 Y is the output vector of size n x p*/
             initialize();
             inputs_class = inputs;
-            Tensor prod = inputs * params["weights"];
-            Tensor outputs = prod + params["bias"];
+            Tensor prod = inputs * params.weights;
+            Tensor outputs = prod + params.bias;
             std::cout << "These are outputs from forward" << outputs << std::endl;
             return outputs;
         }
@@ -59,10 +65,10 @@ class Linear : public Layer {
             then dy/da = f'(x) @ b.T
             and dy/db = a.T @ f'(x)
             and dy/dc = f'(x)*/
-            //grad_bias = xt::sum(grad,1);
+            params.grad_biases = xt::sum(grad);
             auto tr_inputs = xt::transpose(inputs_class);
-            grads["weights"] = tr_inputs * grad;
-            auto tr_grad_w = xt::transpose(grads["weights"]);
+            params.grad_weights = tr_inputs * grad;
+            auto tr_grad_w = xt::transpose(params.grad_weights);
             Tensor backward_outputs = grad * tr_grad_w;
             std::cout << "These are outputs from backward" << backward_outputs << std::endl;
             return backward_outputs;

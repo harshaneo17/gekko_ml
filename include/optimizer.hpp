@@ -1,4 +1,6 @@
+#include "tensor_load.hpp"
 #include "neuralnetwork.hpp"
+
 
 class Optimizer {
     public:
@@ -15,7 +17,8 @@ class SGD : Optimizer {
         }
 
         void step(NeuralNet& net) override {
-
+            std::vector<Tensor> step_var = net.params_and_grads()
+            
         }
         
 };

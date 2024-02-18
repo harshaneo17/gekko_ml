@@ -13,7 +13,6 @@
 
 typedef xt::xtensor<double,2> Tensor;
 
-
 template <typename... Types> //study a bit more on this
 struct NamedTuple {
     std::tuple<Types...> values;

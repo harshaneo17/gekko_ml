@@ -22,8 +22,7 @@ int main(int argc, char* argv[])
     NeuralNet nn(layers);
     nn.forward(arr2);
 
-    auto paramsAndGrads = nn.params_and_grads();
-
+    std::vector<Tensor> paramsAndGrads = nn.params_and_grads();
 
     return 0;
 }
