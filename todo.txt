@@ -2,7 +2,7 @@ tensors - done _ testing done
 loss functions - done _ testing done
 layers - done _ testing done
 activations - done _ testing done
-neural nets - pending
+neural nets - done _ testing done
 optimizers - pending
 data - done
 training - done
