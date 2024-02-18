@@ -18,7 +18,9 @@ class SGD : Optimizer {
 
         void step(NeuralNet& net) override {
             std::vector<Tensor> step_var = net.params_and_grads()
-            
+            for(size_t i = 0, i < step_var.size(),i++){
+                    
+            }
         }
         
 };
