@@ -3,7 +3,7 @@ loss functions - done _ testing done
 layers - done _ testing done
 activations - done _ testing done
 neural nets - done _ testing done
-optimizers - pending
+optimizers - done _ testing done
 data - done
 training - done
 end_to_end example: XOR

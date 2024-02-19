@@ -28,13 +28,11 @@ class NeuralNet{
             return grad;
         }
 
-        std::vector<Tensor> params_and_grads() {
-            std::vector<Tensor> result;
+        std::vector<std::tuple<Tensor,Tensor>> params_and_grads() {
+            std::vector<std::tuple<Tensor,Tensor>> result;
             for (auto& layer : layers_class) {
-                result.push_back(layer.params.weights);
-                result.push_back(layer.params.bias);
-                result.push_back(layer.params.grad_weights);
-                result.push_back(layer.params.grad_biases);
+                result.push_back(std::make_tuple(layer.params.weights,layer.params.bias));
+                result.push_back(std::make_tuple(layer.params.grad_weights,layer.params.grad_biases));
             }
             return result;
         }

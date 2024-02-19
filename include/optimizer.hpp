@@ -5,21 +5,19 @@
 class Optimizer {
     public:
         virtual void step(NeuralNet& net){
-            std::cout << "Not implemented"
+            std::cout << "Not implemented";
         }
 };
 
 class SGD : Optimizer {
     public:
-        SGD(double lr) {
-            double learning_rate;
-            learning_rate = lr;
-        }
+        double learning_rate;
+        SGD(double lr):learning_rate(lr) {}
 
         void step(NeuralNet& net) override {
-            std::vector<Tensor> step_var = net.params_and_grads()
-            for(size_t i = 0, i < step_var.size(),i++){
-                    
+            std::vector<std::tuple<Tensor,Tensor>> step_var = net.params_and_grads();
+            for(auto &tuple : step_var){
+                    std::get<0>(tuple) -= learning_rate * std::get<1>(tuple);
             }
         }
         

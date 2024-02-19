@@ -2,6 +2,7 @@
 #include "tensor_load.hpp"
 #include "layers.hpp"
 #include "neuralnetwork.hpp"
+#include "optimizer.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -22,7 +23,8 @@ int main(int argc, char* argv[])
     NeuralNet nn(layers);
     nn.forward(arr2);
 
-    std::vector<Tensor> paramsAndGrads = nn.params_and_grads();
-
+    std::vector<std::tuple<Tensor,Tensor>> paramsAndGrads = nn.params_and_grads();
+    SGD optim(0.01);
+    optim.step(nn);
     return 0;
 }
