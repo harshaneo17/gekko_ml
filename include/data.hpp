@@ -1,24 +1,19 @@
+#ifndef DATA_HPP
+#define DATA_HPP
+
+
 #include "tensor_load.hpp"
-#include <iostream>
-#include <vector>
-#include <tuple>
-#include <iterator>
-#include <algorithm>
-
-
-// Define Batch as a NamedTuple of Tensor
-using Batch = NamedTuple<Tensor, Tensor>;
 
 // Define Iterator for Batch
 class BatchIterator {
 public:
     BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
 
-    std::vector<Batch> operator()(const Tensor& inputs, const Tensor& targets) {
-        std::vector<Batch> batches;
+    std::vector<BatchTuple> operator()(const Tensor& inputs, const Tensor& targets) {
+        std::vector<BatchTuple> batches;
         std::vector<int> starts(inputs.size() / batch_size);
         
-        auto starts = xt::arange(0, inputs.size(), batch_size);// Fill starts with 0, 1, 2, ..., n-1
+        starts = xt::arange(0, inputs.size(), batch_size);// Fill starts with 0, 1, 2, ..., n-1
 
         if (shuffle) {
             xt::random::shuffle(starts);
@@ -37,3 +32,5 @@ private:
     int batch_size;
     bool shuffle;
 };
+
+#endif

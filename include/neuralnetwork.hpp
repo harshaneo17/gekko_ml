@@ -1,11 +1,9 @@
 #ifndef NEURAL_NETWORK_HPP
 #define NEURAL_NETWORK_HPP
 
-#include "layers.hpp"
-#include <vector>
-#include "tensor_load.hpp"
-#include <algorithm>
 
+#include "tensor_load.hpp"
+#include "layers.hpp"
 
 
 class NeuralNet{
@@ -28,8 +26,8 @@ class NeuralNet{
             return grad;
         }
 
-        std::vector<std::tuple<Tensor,Tensor>> params_and_grads() {
-            std::vector<std::tuple<Tensor,Tensor>> result;
+        std::vector<BatchTuple> params_and_grads() {
+            std::vector<BatchTuple> result;
             for (auto& layer : layers_class) {
                 result.push_back(std::make_tuple(layer.params.weights,layer.params.bias));
                 result.push_back(std::make_tuple(layer.params.grad_weights,layer.params.grad_biases));

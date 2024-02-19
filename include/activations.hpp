@@ -2,7 +2,6 @@
 #define ACTIVATIONS_HPP
 
 #include "tensor_load.hpp"
-#include <map>
 #include "layers.hpp"
 
 

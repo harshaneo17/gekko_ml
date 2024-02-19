@@ -1,3 +1,6 @@
+#ifndef OPTIMIZER_HPP
+#define OPTIMIZER_HPP
+
 #include "tensor_load.hpp"
 #include "neuralnetwork.hpp"
 
@@ -15,10 +18,12 @@ class SGD : Optimizer {
         SGD(double lr):learning_rate(lr) {}
 
         void step(NeuralNet& net) override {
-            std::vector<std::tuple<Tensor,Tensor>> step_var = net.params_and_grads();
+            std::vector<BatchTuple> step_var = net.params_and_grads();
             for(auto &tuple : step_var){
                     std::get<0>(tuple) -= learning_rate * std::get<1>(tuple);
             }
         }
         
 };
+
+#endif

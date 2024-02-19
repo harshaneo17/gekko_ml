@@ -10,13 +10,16 @@
 #include <xtensor/xmath.hpp>
 #include <cmath>
 #include <xtensor/xbuilder.hpp>
+#include <iostream>
+#include <vector>
+#include <tuple>
+#include <iterator>
+#include <algorithm>
+#include <map>
+#include <typeinfo>
 
 typedef xt::xtensor<double,2> Tensor;
-
-template <typename... Types> //study a bit more on this
-struct NamedTuple {
-    std::tuple<Types...> values;
-};
+typedef std::tuple<Tensor, Tensor> BatchTuple;
 
 
 

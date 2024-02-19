@@ -2,8 +2,6 @@
 #define LAYERS_HPP
 
 #include "tensor_load.hpp"
-#include <map>
-#include <typeinfo>
 
 struct Params{
   Tensor weights;

@@ -1,8 +1,8 @@
 #include <iostream>
 #include "tensor_load.hpp"
-#include "layers.hpp"
-#include "neuralnetwork.hpp"
-#include "optimizer.hpp"
+#include "train.hpp"
+
+
 
 int main(int argc, char* argv[])
 {
@@ -14,17 +14,21 @@ int main(int argc, char* argv[])
     Tensor arr2
       {{5.0, 6.0, 7.0}};
 
-    xt::xarray<double> res = xt::view(arr1, 1) + arr2;
+
     
     Linear linr(3,3);
-    // linr.forward(arr1);
-    // linr.backward(arr1);
-    std::vector<Linear> layers{linr,linr};
+    Tanh tanh_obj;
+    std::vector<Linear> layers{linr,tanh_obj.tanh(arr1),linr};
     NeuralNet nn(layers);
-    nn.forward(arr2);
-
-    std::vector<std::tuple<Tensor,Tensor>> paramsAndGrads = nn.params_and_grads();
+    Tensor inputs = arr1;
+    Tensor targets = arr2;
+    int num_epochs = 10;
+    BatchIterator batch_it(32,true);
+    MSE mse;
     SGD optim(0.01);
-    optim.step(nn);
+
+    Train train_obj;
+    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse.loss(),optim);
+
     return 0;
 }
