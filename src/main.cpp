@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     
     Linear linr(3,3);
     Tanh tanh_obj;
-    std::vector<Linear> layers{linr,tanh_obj.tanh(arr1),linr};
+    std::vector<Linear> layers{linr,linr,linr};
     NeuralNet nn(layers);
     Tensor inputs = arr1;
     Tensor targets = arr2;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     SGD optim(0.01);
 
     Train train_obj;
-    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse.loss(),optim);
+    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse,optim);
 
     return 0;
 }

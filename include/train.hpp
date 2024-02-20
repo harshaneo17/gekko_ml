@@ -36,7 +36,7 @@ class Train{
 
         
         void train(NeuralNet& net,Tensor& inputs,Tensor& targets,int& num_epochs,BatchIterator& BatchIterator,MSE& loss,Optimizer& optimizer){
-            for (size_t epoch = 0, epoch < num_epochs, epoch++){
+            for (size_t epoch = 0; epoch < num_epochs; epoch++){
                 double epoch_loss = 0.0;
                 for (auto& input : inputs ) {
                     for(auto& target : targets){

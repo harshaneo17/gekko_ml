@@ -21,8 +21,8 @@ public:
 
         for (int start : starts) {
             int end = start + batch_size;
-            Tensor batch_inputs(inputs.begin() + start, inputs.begin() + end);
-            Tensor batch_targets(targets.begin() + start, targets.begin() + end);
+            Tensor batch_inputs = inputs.begin() + start, inputs.begin() + end;
+            Tensor batch_targets = targets.begin() + start, targets.begin() + end;
             batches.push_back({batch_inputs, batch_targets});
         }
 

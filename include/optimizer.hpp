@@ -12,7 +12,7 @@ class Optimizer {
         }
 };
 
-class SGD : Optimizer {
+class SGD : public Optimizer {
     public:
         double learning_rate;
         SGD(double lr):learning_rate(lr) {}
