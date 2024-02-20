@@ -3,34 +3,51 @@
 
 
 #include "tensor_load.hpp"
+#include <xtensor/xbuilder.hpp>
 
 // Define Iterator for Batch
-class BatchIterator {
+struct Batch {
+    Tensor inputs;
+    Tensor targets;
+};
+
+// Define your data iterator interface
+class DataIterator {
 public:
-    BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
+    virtual std::vector<Batch> initialize(Tensor inputs, Tensor targets) = 0;
+};
 
-    std::vector<BatchTuple> operator()(const Tensor& inputs, const Tensor& targets) {
-        std::vector<BatchTuple> batches;
-        std::vector<int> starts(inputs.size() / batch_size);
-        
-        starts = xt::arange(0, inputs.size(), batch_size);// Fill starts with 0, 1, 2, ..., n-1
-
-        if (shuffle) {
-            xt::random::shuffle(starts);
-        }
-
-        for (int start : starts) {
-            int end = start + batch_size;
-            Tensor batch_inputs = inputs.begin() + start, inputs.begin() + end;
-            Tensor batch_targets = targets.begin() + start, targets.begin() + end;
-            batches.push_back({batch_inputs, batch_targets});
-        }
-
-        return batches;
-    }
+// Define your batch iterator class
+class BatchIterator : public DataIterator {
 private:
     int batch_size;
     bool shuffle;
+    
+public:
+    std::vector<Batch> batches;
+    BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
+    
+    std::vector<Batch> initialize(Tensor inputs, Tensor targets) override {
+
+        auto starts = xt::arange(0, inputs.size(),batch_size);
+        if (shuffle) {
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(starts.begin(), starts.end(), g);
+        }
+        
+        for (int j; j < starts.size(); j++) {
+            std::cout << "This is easy"<< starts[j] << std::endl;
+            int end = std::min(starts[j] + batch_size, static_cast<int>(inputs.size()));
+            Batch batch;
+            for (int i = starts[j]; i < end; i++) {
+                batch.inputs = inputs;
+                batch.targets = targets;
+            }
+            batches.push_back(batch);
+        }
+        return batches;
+    }
 };
 
 #endif
