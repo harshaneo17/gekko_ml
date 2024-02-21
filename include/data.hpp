@@ -3,13 +3,25 @@
 
 
 #include "tensor_load.hpp"
-#include <xtensor/xbuilder.hpp>
 
 // Define Iterator for Batch
 struct Batch {
     Tensor inputs;
     Tensor targets;
 };
+
+
+std::vector<Batch> arange(double start, double stop, int step = 1) {
+    std::vector<Batch> result;
+    // if (step == 0) {
+    //     // Avoid division by zero
+    //     return result;
+    // }
+    for (double value = start; value < stop; value += step) {
+        result.push_back(value);
+    }
+    return result;
+}
 
 // Define your data iterator interface
 class DataIterator {
@@ -29,7 +41,7 @@ public:
     
     std::vector<Batch> initialize(Tensor inputs, Tensor targets) override {
 
-        auto starts = xt::arange(0, inputs.size(),batch_size);
+        std::vector<Batch> starts = arange(0,inputs.size(),batch_size);
         if (shuffle) {
             std::random_device rd;
             std::mt19937 g(rd());
