@@ -30,5 +30,6 @@ int main(int argc, char* argv[])
     Train train_obj;
     train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse,optim);
 
+
     return 0;
 }
