@@ -11,14 +11,11 @@ struct Batch {
 };
 
 
-std::vector<Batch> arange(double start, double stop, int step = 1) {
-    std::vector<Batch> result;
-    // if (step == 0) {
-    //     // Avoid division by zero
-    //     return result;
-    // }
+std::vector<double> arange(double start, double stop, double step) {
+    std::vector<double> result;
     for (double value = start; value < stop; value += step) {
-        result.push_back(Batch);
+        result.push_back(value);
+        std::cout << "here" << std::endl;
     }
     return result;
 }
@@ -36,26 +33,24 @@ private:
     bool shuffle;
     
 public:
-    std::vector<Batch> batches;
+    
     BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
     
     std::vector<Batch> initialize(Tensor inputs, Tensor targets) override {
-
-        std::vector<Batch> starts = arange(0,inputs.size(),batch_size);
+        std::vector<Batch> batches;
+        std::vector<double> starts = arange(0,inputs.size(),batch_size);
+        std::cout << starts.size() << std::endl;
+        // std::vector<Batch> starts(10);
         if (shuffle) {
             std::random_device rd;
             std::mt19937 g(rd());
             std::shuffle(starts.begin(), starts.end(), g);
         }
         
-        for (int j; j < starts.size(); j++) {
-            std::cout << "This is easy"<< starts[j] << std::endl;
-            int end = std::min(starts[j] + batch_size, static_cast<int>(inputs.size()));
-            Batch batch;
-            for (int i = starts[j]; i < end; i++) {
-                batch.inputs = inputs;
-                batch.targets = targets;
-            }
+        Batch batch;
+        for (auto start : starts) {
+            batch.inputs = inputs;
+            batch.targets = targets;
             batches.push_back(batch);
         }
         return batches;
