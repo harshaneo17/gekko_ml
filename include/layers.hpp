@@ -28,12 +28,17 @@ class Linear : public Layer {
     public:
         /*computes output = inputs @ weights + biases*/
         Linear (double input_size,double output_size) : input_class_size(input_size),output_class_size(output_size){}
-        Tensor inputs_class,weights,bias,grad_weights,grad_bias;
+        Tensor weights,bias,grad_weights,grad_bias;
+        Tensor inputs_class;
         Params params;
 
         void initialize(){
             params.weights = xt::random::randn<double>({input_class_size,output_class_size});
             params.bias = xt::random::randn<double>({output_class_size,output_class_size});
+        }
+
+        void update_func(Tensor &inputs){
+
         }
         
         Tensor forward(Tensor inputs) override {
@@ -66,9 +71,9 @@ class Linear : public Layer {
             and dy/dc = f'(x)*/
             Tensor copy_var = xt::sum(grad,1);
             params.grad_biases = copy_var;
-            std::cout << params.grad_biases << std::endl;
             auto tr_inputs = xt::transpose(inputs_class);
-            
+            //inputs_class is not updated
+            std::cout << "may be this" << tr_inputs << std::endl;
             params.grad_weights = tr_inputs * grad;
             std::cout << "the bug is here" << std::endl;
             auto tr_grad_w = xt::transpose(params.grad_weights);

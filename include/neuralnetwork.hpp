@@ -14,7 +14,6 @@ class NeuralNet{
         Tensor forward(Tensor inputs){
             for(auto layer : layers_class)
                 inputs = layer.forward(inputs);
-            std::cout << inputs << std::endl;
             return inputs;
         }
 
