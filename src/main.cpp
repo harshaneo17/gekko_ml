@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     SGD optim(0.01);
 
     Train train_obj;
-    train_obj.train(nn,inputs,targets,num_epochs,batch_it,optim);
+    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse,optim);
 
     return 0;
 }

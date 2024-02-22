@@ -63,7 +63,7 @@ class Linear : public Layer {
             then dy/da = f'(x) @ b.T
             and dy/db = a.T @ f'(x)
             and dy/dc = f'(x)*/
-            params.grad_biases = xt::sum(grad);
+            params.grad_biases = xt::sum(grad,1);
             auto tr_inputs = xt::transpose(inputs_class);
             params.grad_weights = tr_inputs * grad;
             auto tr_grad_w = xt::transpose(params.grad_weights);
