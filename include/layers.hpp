@@ -15,11 +15,11 @@ class Layer {
         
         Params params;
         
-        virtual Tensor forward(Tensor inputs){
+        virtual Tensor forward(Tensor& inputs){
             std::cout << "Not Implemented";
         }
 
-        virtual Tensor backward(Tensor grad){
+        virtual Tensor backward(Tensor& grad){
             std::cout << "Not Implemented";
         }
 };
@@ -35,7 +35,7 @@ class Linear : public Layer {
             params.bias = xt::random::randn<double>({output_class_size,output_class_size});
         }
         
-        Tensor forward(Tensor inputs) override {
+        Tensor forward(Tensor& inputs) override {
             /*outputs = inputs @ w + b*/
             /*Mathematically, a linear layer can be represented as:
                 Y = XW + b
@@ -48,11 +48,11 @@ class Linear : public Layer {
             inputs_class = inputs;
             Tensor prod = inputs * params.weights;
             Tensor outputs = prod + params.bias;
-            std::cout << "These are outputs from forward" << outputs << std::endl;
+            // std::cout << "These are outputs from forward" << outputs << std::endl;
             return outputs;
         }
 
-        Tensor backward(Tensor grad) override {
+        Tensor backward(Tensor& grad) override {
             /*
             if y = f(x) and x = a * b + c
             then dy/da = f'(x) * b
@@ -68,7 +68,7 @@ class Linear : public Layer {
             params.grad_weights = tr_inputs * grad;
             auto tr_grad_w = xt::transpose(params.grad_weights);
             Tensor backward_outputs = grad * tr_grad_w;
-            std::cout << "These are outputs from backward" << backward_outputs << std::endl;
+            // std::cout << "These are outputs from backward" << backward_outputs << std::endl;
             return backward_outputs;
         }
         private:

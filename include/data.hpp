@@ -15,7 +15,7 @@ std::vector<double> arange(double start, double stop, double step) {
     std::vector<double> result;
     for (double value = start; value < stop; value += step) {
         result.push_back(value);
-        std::cout << "here" << std::endl;
+        value = std::min(value + step, stop);
     }
     return result;
 }
