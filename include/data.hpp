@@ -18,7 +18,7 @@ std::vector<Batch> arange(double start, double stop, int step = 1) {
     //     return result;
     // }
     for (double value = start; value < stop; value += step) {
-        result.push_back(value);
+        result.push_back(Batch);
     }
     return result;
 }
