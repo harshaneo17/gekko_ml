@@ -13,7 +13,7 @@ struct Params{
 class Layer {
     public:
         
-        Params params;
+        
         
         virtual Tensor forward(Tensor inputs){
             std::cout << "Not Implemented";
@@ -29,6 +29,7 @@ class Linear : public Layer {
         /*computes output = inputs @ weights + biases*/
         Linear (double input_size,double output_size) : input_class_size(input_size),output_class_size(output_size){}
         Tensor inputs_class,weights,bias,grad_weights,grad_bias;
+        Params params;
 
         void initialize(){
             params.weights = xt::random::randn<double>({input_class_size,output_class_size});
@@ -63,11 +64,13 @@ class Linear : public Layer {
             then dy/da = f'(x) @ b.T
             and dy/db = a.T @ f'(x)
             and dy/dc = f'(x)*/
-            std::cout << "the bug is here" << std::endl;
-            params.grad_biases = xt::sum(grad,1);
-            std::cout << "told you" << std::endl;
+            Tensor copy_var = xt::sum(grad,1);
+            params.grad_biases = copy_var;
+            std::cout << params.grad_biases << std::endl;
             auto tr_inputs = xt::transpose(inputs_class);
+            
             params.grad_weights = tr_inputs * grad;
+            std::cout << "the bug is here" << std::endl;
             auto tr_grad_w = xt::transpose(params.grad_weights);
             Tensor backward_outputs = grad * tr_grad_w;
             // std::cout << "These are outputs from backward" << backward_outputs << std::endl;
