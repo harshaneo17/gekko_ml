@@ -32,13 +32,11 @@ class Linear : public Layer {
         Tensor inputs_class;
         Params params;
 
+
+
         void initialize(){
             params.weights = xt::random::randn<double>({input_class_size,output_class_size});
             params.bias = xt::random::randn<double>({output_class_size,output_class_size});
-        }
-
-        void update_func(Tensor &inputs){
-
         }
         
         Tensor forward(Tensor inputs) override {
@@ -52,6 +50,7 @@ class Linear : public Layer {
                 Y is the output vector of size n x p*/
             initialize();
             inputs_class = inputs;
+            std::cout << inputs_class << std::endl;
             Tensor prod = inputs * params.weights;
             Tensor outputs = prod + params.bias;
             // std::cout << "These are outputs from forward" << outputs << std::endl;
@@ -71,7 +70,8 @@ class Linear : public Layer {
             and dy/dc = f'(x)*/
             Tensor copy_var = xt::sum(grad,1);
             params.grad_biases = copy_var;
-            auto tr_inputs = xt::transpose(inputs_class);
+            std::cout << inputs_class << std::endl;
+            Tensor tr_inputs = xt::transpose(inputs_class);
             //inputs_class is not updated
             std::cout << "may be this" << tr_inputs << std::endl;
             params.grad_weights = tr_inputs * grad;
