@@ -17,11 +17,11 @@ class NeuralNet{
             return inputs;
         }
 
-        Tensor backward(Tensor grad){
+        Tensor backward(Tensor grad,Tensor inputs){
             std::vector<Linear> rev_layers_class = layers_class; 
             std::reverse(rev_layers_class.begin(),rev_layers_class.end());
             for(auto layer : rev_layers_class)
-                grad = layer.backward(grad);
+                grad = layer.backward(grad,inputs);
             return grad;
         }
 

@@ -7,9 +7,7 @@
 
 class Optimizer {
     public:
-        virtual void step(NeuralNet net){
-            std::cout << "Not implemented";
-        }
+        virtual void step(NeuralNet net){}
 };
 
 class SGD : public Optimizer {
