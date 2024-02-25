@@ -13,26 +13,25 @@
 class Train{
 
     public:
-        // void gui_train(){
-        //     /*this function uses screen width and multiple for loops to write screen*/
-        //         float progress = 0.0;
-        //         while (progress < 1.0) {
-        //             int barWidth = 70;
+        void gui_train(float epoch,int num_epochs){
+            /*this function uses screen width and multiple for loops to write screen*/
+                while (epoch < num_epochs) {
+                    int barWidth = 70;
             
-        //             std::cout << "[";
-        //             int pos = barWidth * progress;
-        //             for (int i = 0; i < barWidth; ++i) {
-        //                 if (i < pos) std::cout << "=";
-        //                 else if (i == pos) std::cout << ">";
-        //                 else std::cout << " ";
-        //             }
-        //             std::cout << "] " << int(progress * 100.0) << " %\r";
-        //             std::cout.flush();
+                    std::cout << "[";
+                    int pos = barWidth * epoch;
+                    for (int i = 0; i < barWidth; ++i) {
+                        if (i < pos) std::cout << "=";
+                        else if (i == pos) std::cout << ">";
+                        else std::cout << " ";
+                    }
+                    std::cout << "] " << int((epoch + 0.1) * 10.0) << " %\r";
+                    std::cout.flush();
             
-        //             progress += 0.16; // for demonstration only
-        //         }
-        //         std::cout << std::endl;
-        // }
+                    epoch += 0.0001;
+                }
+                std::cout << std::endl;
+        }
 
         
         void train(NeuralNet net,Tensor inputs,Tensor targets,int num_epochs,BatchIterator batchit,MSE mse,Optimizer optimizer){
@@ -46,9 +45,14 @@ class Train{
                         Tensor grad = mse.grad(predicted, batches[i].targets);
                         net.backward(grad,batches[i].inputs);
                         optimizer.step(net);
+                        
                     }
+                gui_train(epoch,num_epochs);
                 std::cout << "Epoch: " << epoch + 1 << ", Loss: " << epoch_loss << std::endl;
+                if(epoch+1 == num_epochs){
+                    std::cout << "Training Job complete" << std::endl;
                 }
+            }
 
         }
 };
