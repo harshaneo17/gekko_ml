@@ -13,24 +13,21 @@ to compile this program use
     cmake -S . -B build
     make -C build/
 
-Notes:
+# Getting started
+This assumes you have xtensor and xtl libraries installed on your machine.
 
-https://www.youtube.com/watch?v=o64FV-ez6Gw&t=581s
+* Clone the repo. Make changes to the find package in cmakelists file.
+* Ensure it points to the right directory for xtensor and xtl
+* Change values of the objects in main.cpp
+* Build using ```make -C build/ ```
+* Run the program with ```./build/main ```
 
-https://xtensor.readthedocs.io/en/latest/numpy.html
 
+# Notes:
+This model is not saved anywhere. 
+It currently only uses stack of Linear Layers.
+Other layers are still pending.
 https://www.sharpsightlabs.com/blog/numpy-axes-explained/#numpy-axes-quick-explanation
 
-deactivated github actions for a while
 
-add graphics update to show scroll bar
-
-test build processes _
-
-NOTES:
-
-libc++abi: terminating due to uncaught exception of type std::bad_alloc: std::bad_alloc
-zsh: abort      ./build/main
-
-https://stackoverflow.com/questions/50827678/what-is-the-most-common-reason-that-bad-alloc-is-thrown
 

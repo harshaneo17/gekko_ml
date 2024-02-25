@@ -4,7 +4,7 @@ layers - done _ testing done
 activations - done _ testing done
 neural nets - done _ testing done
 optimizers - done _ testing done
-data - done
-training - done
+data - done _ testing done
+training - done _ testing done
 end_to_end example: XOR
 end_to_end example: Fizz Buzz
