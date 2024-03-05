@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     Tensor inputs = arr1;
     Tensor targets = arr2;
     int num_epochs = 10;
-    BatchIterator batch_it(32,true);
+    BatchIterator batch_it(1,true);
     MSE mse;
     SGD optim(0.01);
 

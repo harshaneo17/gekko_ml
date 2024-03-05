@@ -8,8 +8,8 @@
 
 class NeuralNet{
     public:
-        std::vector<Linear> layers_class;
-        NeuralNet(std::vector<Linear>& layers):layers_class(layers) {}
+        std::vector<Layer> layers_class;
+        NeuralNet(std::vector<Layer>& layers):layers_class(layers) {}
 
         Tensor forward(Tensor inputs){
             for(auto layer : layers_class)
@@ -18,7 +18,7 @@ class NeuralNet{
         }
 
         Tensor backward(Tensor grad,Tensor inputs){
-            std::vector<Linear> rev_layers_class = layers_class; 
+            std::vector<Layer> rev_layers_class = layers_class; 
             std::reverse(rev_layers_class.begin(),rev_layers_class.end());
             for(auto layer : rev_layers_class)
                 grad = layer.backward(grad,inputs);
