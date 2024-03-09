@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependancies
-      run: sudo apt install libboost-all-dev
     - name: Checkout code
       uses: actions/checkout@v3
     - name: run cmake
