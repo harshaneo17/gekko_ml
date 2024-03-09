@@ -15,6 +15,9 @@ to compile this program use
 
 # Getting started
 This assumes you have xtensor and xtl libraries installed on your machine.
+If not please follow these instructions and install them
+
+https://xtensor.readthedocs.io/en/latest/installation.html#
 
 * Clone the repo. Make changes to the find package in cmakelists file.
 * Ensure it points to the right directory for xtensor and xtl
