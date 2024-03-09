@@ -14,6 +14,7 @@ struct Layer {
     public:
         virtual Tensor forward(Tensor inputs) {}
         virtual Tensor backward(Tensor grad, Tensor inputs){}
+        Params params;
 };
 
 class Linear : public Layer {

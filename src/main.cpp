@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     Linear linr(3,3);
     Tanh tanh_obj;
     std::vector<Linear> layers{linr,linr,linr};
-    NeuralNet nn(layers);
+    NeuralNet nn{&linr,&tanh_obj,&linr};
     Tensor inputs = arr1;
     Tensor targets = arr2;
     int num_epochs = 10;
