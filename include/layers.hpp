@@ -25,7 +25,7 @@ class Linear : public Layer {
 
         void initialize(){
             params.weights = xt::random::randn<double>({input_class_size,output_class_size});
-            params.bias = xt::random::randn<double>({output_class_size,output_class_size});
+            params.bias = xt::random::randn<double>({output_class_size});
         }
         
         Tensor forward(Tensor inputs) override {

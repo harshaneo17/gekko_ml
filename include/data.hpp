@@ -19,27 +19,14 @@ class BatchIterator : public DataIterator {
 public:
     
     BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
-
-    std::vector<double> arange(double start, double stop, double step) {
-        if (step > stop){
-            throw std::invalid_argument( "reduce batch size: its greater than input size" );
-        }
-        std::vector<double> result;
-        for (double value = start; value < stop; value += step) {
-            result.push_back(value);
-            value = std::min(value + step, stop);
-        }
-        return result;
-    }
     
     std::vector<Batch> initialize(Tensor inputs, Tensor targets) override {
         std::vector<Batch> batches;
-        std::vector<double> starts = arange(0,inputs.size(),batch_size);
+
+        Tensor starts = xt::arange(0,static_cast<int>(inputs.size()),batch_size);
 
         if (shuffle) {
-            std::random_device rd;
-            std::mt19937 g(rd());
-            std::shuffle(starts.begin(), starts.end(), g);
+            xt::random::shuffle(starts);
         }
         
         Batch batch;

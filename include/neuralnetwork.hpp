@@ -25,8 +25,8 @@ class NeuralNet{
             return grad;
         }
 
-        std::vector<BatchTuple> params_and_grads() {
-            std::vector<BatchTuple> result;
+        std::vector<TensorTuple> params_and_grads() {
+            std::vector<TensorTuple> result;
             for (auto layer : layers_class) {
                 result.push_back(std::make_tuple(layer.params.weights,layer.params.bias));
                 result.push_back(std::make_tuple(layer.params.grad_weights,layer.params.grad_biases));
