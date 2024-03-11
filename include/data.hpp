@@ -9,38 +9,16 @@ struct Batch {
     Tensor targets;
 };
 
-class DataIterator {
-public:
-    virtual std::vector<Batch> initialize(Tensor inputs, Tensor targets) = 0;
-};
 
-class BatchIterator : public DataIterator {
+class BatchIterator {
 
-public:
-    
-    BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
-    
-    std::vector<Batch> initialize(Tensor inputs, Tensor targets) override {
-        std::vector<Batch> batches;
-
-        Tensor starts = xt::arange(0,static_cast<int>(inputs.size()),batch_size);
-
-        if (shuffle) {
-            xt::random::shuffle(starts);
-        }
+    public:
         
-        Batch batch;
-        for (auto start : starts) {
-            batch.inputs = inputs;
-            batch.targets = targets;
-            batches.push_back(batch);
-        }
-        return batches;
-    }
-
-private:
-    int batch_size;
-    bool shuffle;
+        BatchIterator(int batch_size = 32, bool shuffle = true) : batch_size(batch_size), shuffle(shuffle) {}
+        std::vector<Batch> initialize_batch(Tensor inputs, Tensor targets) {};
+    private:
+        int batch_size;
+        bool shuffle;
     
 };
 
