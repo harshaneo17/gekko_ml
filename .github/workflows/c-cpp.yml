@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install dependancies
+      run: sudo apt-get install xtensor-dev
+    - name: run cmake
+      run: cmake -S . -B build
+    - name: run make
+      run: make -C build

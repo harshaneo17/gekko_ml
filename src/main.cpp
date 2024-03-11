@@ -14,8 +14,6 @@ int main(int argc, char* argv[])
     Tensor arr2
       {{5.0, 6.0, 7.0}};
 
-
-    
     Linear linr(3,3);
     Tanh tanh_obj;
     std::vector<Linear> layers{linr,linr,linr};
@@ -23,7 +21,7 @@ int main(int argc, char* argv[])
     Tensor inputs = arr1;
     Tensor targets = arr2;
     int num_epochs = 10;
-    BatchIterator batch_it(32,true);
+    BatchIterator batch_it(1,true);
     MSE mse;
     SGD optim(0.01);
 

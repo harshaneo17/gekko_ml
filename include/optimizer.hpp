@@ -16,7 +16,7 @@ class SGD : public Optimizer {
         SGD(double lr):learning_rate(lr) {}
 
         void step(NeuralNet net) override {
-            std::vector<BatchTuple> step_var = net.params_and_grads();
+            std::vector<TensorTuple> step_var = net.params_and_grads();
             for(auto &tuple : step_var){
                     std::get<0>(tuple) -= learning_rate * std::get<1>(tuple);
             }
