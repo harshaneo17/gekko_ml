@@ -24,7 +24,7 @@ void Train::train(NeuralNet net,Tensor inputs,Tensor targets,int num_epochs,Batc
     std::cout << "Training Job started" << std::endl;
     for (size_t epoch = 0; epoch < num_epochs; epoch++){
         double epoch_loss = 0.0;
-        std::vector<Batch> batches = batchit.initialize(inputs, targets);
+        std::vector<Batch> batches = batchit.initialize_batch(inputs, targets);
             for (size_t i = 0; i < batches.size(); i++) {
                 Tensor predicted = net.forward(batches[i].inputs);
                 epoch_loss  += mse.loss(predicted, batches[i].targets); 
