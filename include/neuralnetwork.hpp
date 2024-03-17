@@ -9,7 +9,7 @@
 class NeuralNet{
     public:
         std::vector<Layer*> layers_class;
-        NeuralNet(std::vector<Layer*>&& layers):layers_class(layers) {}
+        NeuralNet(std::vector<Layer*> layers):layers_class(layers) {}
 
         Tensor forward(Tensor& inputs){
             for(auto layer : layers_class)
