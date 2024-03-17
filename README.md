@@ -27,9 +27,7 @@ https://xtensor.readthedocs.io/en/latest/installation.html#
 
 
 # Notes:
-This model is not saved anywhere. 
-It currently only uses stack of Linear Layers.
-Other layers are still pending.
+This model weights are not saved is not saved.
 https://www.sharpsightlabs.com/blog/numpy-axes-explained/#numpy-axes-quick-explanation
 
 
