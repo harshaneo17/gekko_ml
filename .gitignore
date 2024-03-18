@@ -4,3 +4,5 @@
 build/
 
 rename_github/
+
+.vscode/
