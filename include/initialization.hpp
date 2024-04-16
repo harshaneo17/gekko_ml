@@ -21,3 +21,25 @@ class He{
     }
 };
 
+class LSUV{
+    public:
+        double input_stddev;
+        LSUV(double scale){
+            input_stddev = scale;
+        }
+
+        Tensor initialize(double n_rows,double n_cols){
+            std::tuple <double, double> size;
+            std::tuple <Tensor, Tensor, Tensor> SVD;
+            size = make_tuple(n_rows,n_cols);
+            Tensor rand_t = xt::random::rand<double>({size});
+            SVD = xt::linalg::svd(rand_t,full_matrices=false);
+            Tensor weights = std::get<0>(SVD).shape == (n_rows,n_cols) ?  std::get<0>(SVD) : std::get<2>(SVD);
+            Tensor input_values = xt::random::randn<double>({input_stddev,size});
+            Tensor output_values = input_values * weights;
+            Tensor std_dev = xt::stddev(output_values)
+            return weights / std_dev;
+        }
+
+};
+
