@@ -7,6 +7,7 @@
 #include "lossfunctions.hpp"
 #include "data.hpp"
 #include "activations.hpp"
+#include "initialization.hpp"
 
 
 
