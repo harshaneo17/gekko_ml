@@ -14,10 +14,6 @@ int main(int argc, char* argv[])
     Tensor arr2
       {{5.0, 6.0, 7.0}};
 
-    Glorot g;
-    g.initialize(3,3);
-
-
     Linear linr(3,3);
     Linear linr2(3,3);
     Linear linr3(3,3);
