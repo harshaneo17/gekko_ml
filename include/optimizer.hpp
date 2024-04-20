@@ -24,4 +24,15 @@ class SGD : public Optimizer {
         
 };
 
+class Adam : public Optimizer {
+    public:
+        double learning_rate;
+        Adam(double lr):learning_rate(lr){}
+
+        void step(NeuralNet& net) override {
+            std::vector<TensorTuple> step_var = net.params_and_grads();
+            
+        }
+};
+
 #endif
