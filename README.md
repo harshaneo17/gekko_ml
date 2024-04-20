@@ -27,8 +27,8 @@ https://xtensor.readthedocs.io/en/latest/installation.html#
 
 
 # Notes:
-This model weights are not saved is not saved.
+This model weights are not saved.
 https://www.sharpsightlabs.com/blog/numpy-axes-explained/#numpy-axes-quick-explanation
 
 
-
+The model uses initialization from three research papers
