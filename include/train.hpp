@@ -35,7 +35,7 @@ class Train{
         }
 
         
-        void train(NeuralNet net,Tensor inputs,Tensor targets,int num_epochs,BatchIterator batchit,MSE mse,Optimizer optimizer){
+        void train(NeuralNet &net,Tensor inputs,Tensor targets,int num_epochs,BatchIterator batchit,MSE mse,Optimizer optimizer){
             std::cout << "Training Job started" << std::endl;
             for (size_t epoch = 0; epoch < num_epochs; epoch++){
                 double epoch_loss = 0.0;

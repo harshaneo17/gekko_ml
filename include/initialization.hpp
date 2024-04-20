@@ -6,6 +6,11 @@
 class Glorot{
     public:
         Tensor initialize(double n_rows,double n_cols){
+            /*Golrot proposed a method to initialize
+            parameters to a feedforward neuralnetwork 
+            This involves finding scale from root of 2 / no.rows + no.columns
+            and multiplying with random initialization of tensor with no.rows and no.columns
+            as parameters*/
             double a = 2 / (n_rows + n_cols);
             double scale = std::sqrt(a);
             Tensor param = xt::random::randn<double>({n_rows,n_cols}) * scale;
