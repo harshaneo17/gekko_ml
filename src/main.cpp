@@ -26,9 +26,10 @@ int main(int argc, char* argv[])
     BatchIterator batch_it(1,true);
     MSE mse;
     SGD optim(0.01);
+    Adam optim2(0.01);
 
     Train train_obj;
-    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse,optim);
+    train_obj.train(nn,inputs,targets,num_epochs,batch_it,mse,optim2);
 
 
     return 0;

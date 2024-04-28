@@ -17,7 +17,7 @@
 #include <algorithm>
 
 typedef xt::xarray<double> Tensor;
-typedef std::tuple<Tensor, Tensor> TensorTuple;
+typedef std::tuple<std::string, Tensor, Tensor> TensorTuple;
 
 
 

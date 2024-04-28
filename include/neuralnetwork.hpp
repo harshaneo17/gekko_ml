@@ -32,9 +32,11 @@ class NeuralNet{
 
         std::vector<TensorTuple> params_and_grads() {
             std::vector<TensorTuple> result;
+            std::string name_weight = "weight";
+            std::string name_bias = "bias";
             for (auto layer : layers_class) {
-                result.push_back(std::make_tuple(layer->params.weights,layer->params.bias));
-                result.push_back(std::make_tuple(layer->params.grad_weights,layer->params.grad_biases));
+                result.push_back(std::make_tuple(name_weight,layer->params.weights,layer->params.grad_weights));
+                result.push_back(std::make_tuple(name_bias,layer->params.bias,layer->params.grad_biases));
             }
             return result;
         }
