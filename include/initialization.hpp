@@ -3,7 +3,12 @@
 
 #include "tensor_load.hpp"
 
-class Glorot{
+class INIT{
+    public:
+        virtual Tensor initialize(double n_rows,double n_cols){}
+}
+
+class Glorot : public INIT{
     public:
         Tensor initialize(double n_rows,double n_cols){
             /*Golrot proposed a method to initialize
@@ -18,7 +23,7 @@ class Glorot{
         }
 };
 
-class He{
+class He : public INIT{
     Tensor initialize(double n_rows, double n_cols){
         double  bound = std::sqrt(6/n_rows);
         Tensor rand_values = xt::random::rand<double>({n_rows,n_cols});
@@ -28,7 +33,7 @@ class He{
     }
 };
 
-class LSUV{
+class LSUV : public INIT{
     public:
         double input_stddev;
         LSUV(double scale){
