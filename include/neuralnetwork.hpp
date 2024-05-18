@@ -4,15 +4,16 @@
 
 #include "tensor_load.hpp"
 #include "layers.hpp"
+#include <memory>
 
 
 class NeuralNet{
     public:
-        std::vector<Layer*> layers_class;
-        NeuralNet(std::vector<Layer*> layers):layers_class(layers) {}
+        std::vector<std::unique_ptr<Layer>> layers_class;
+        NeuralNet(std::vector<std::unique_ptr<Layer>> layers):layers_class(std::move(layers)) {}
 
         Tensor forward(Tensor& inputs){
-            for(auto layer : layers_class)
+            for(auto& layer : layers_class)
                 inputs = layer->forward(inputs);
             return inputs;
         }
@@ -34,7 +35,7 @@ class NeuralNet{
             std::vector<TensorTuple> result;
             std::string name_weight = "weight";
             std::string name_bias = "bias";
-            for (auto layer : layers_class) {
+            for (auto& layer : layers_class) {
                 result.push_back(std::make_tuple(name_weight,layer->params.weights,layer->params.grad_weights));
                 result.push_back(std::make_tuple(name_bias,layer->params.bias,layer->params.grad_biases));
             }

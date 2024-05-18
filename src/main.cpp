@@ -14,12 +14,18 @@ int main(int argc, char* argv[])
     Tensor arr2
       {{5.0, 6.0, 7.0}};
 
-    Linear linr(3,3);
-    Linear linr2(3,3);
-    Linear linr3(3,3);
-    Tanh tanh_obj;
-    std::vector<Layer*> layers{&linr,&linr2,&linr3,&tanh_obj};
-    NeuralNet nn{layers};
+    auto linr = std::make_unique<Linear>(3,3);
+    auto linr2 = std::make_unique<Linear>(3,3);
+    auto linr3 = std::make_unique<Linear>(3,3);
+    auto tanh_obj = std::make_unique<Tanh>();
+
+    std::vector<std::unique_ptr<Layer>> layers;
+    layers.push_back(std::move(linr));
+    layers.push_back(std::move(linr2));
+    layers.push_back(std::move(linr3));
+    layers.push_back(std::move(tanh_obj));
+
+    NeuralNet nn(std::move(layers));
     Tensor inputs = arr1;
     Tensor targets = arr2;
     int num_epochs = 10;
