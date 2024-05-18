@@ -3,10 +3,12 @@
 
 #include "tensor_load.hpp"
 #include "layers.hpp"
+#include "initialization.hpp"
+#include "optimizer.hpp"
 
 class Conv2D : Layer {
 private:
-    std::unique_ptr<Initializer> initializer;
+    std::unique_ptr<INIT> initializer;
     std::unique_ptr<Optimizer> optimizer;
     double epsilon;
     int kernel_size;
@@ -35,7 +37,7 @@ private:
 public:
     NetworkLayer(
         double epsilon = 1e-2,
-        std::unique_ptr<Initializer> initializer = std::make_unique<LSUV>(),
+        std::unique_ptr<INIT> initializer = std::make_unique<LSUV>(),
         int kernel_size = 3,
         double l1_param = 0.0,
         double l1_sparse_param = 0.0,
@@ -62,6 +64,10 @@ public:
         n_cols_in(0),
         n_rows_out(0),
         n_cols_out(0) {
+    }
+
+    void initialize(){
+        
     }
     
     
